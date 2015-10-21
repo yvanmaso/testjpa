@@ -28,7 +28,7 @@ public class UserStory
     public void setDescritption(String descritption) {
         this.descritption = descritption;
     }
-    @OneToMany(mappedBy = "UserStory",cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "stories",cascade = CascadeType.PERSIST)
     public List<Team> getEquipes() {
         return equipes;
     }
@@ -38,7 +38,8 @@ public class UserStory
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
+
     public long getId() {
         return id;
     }

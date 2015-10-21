@@ -22,7 +22,7 @@ public class UserStoryMain {
 
 
     public static void main(String[] args) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
         EntityManager manager = factory.createEntityManager();
 
         UserStoryMain test = new UserStoryMain(manager);
@@ -43,9 +43,11 @@ public class UserStoryMain {
 
     private void createEquipes() {
 
-        int numOfEquipe = manager.createQuery("select * from Team").getResultList().size();
-        if (numOfEquipe == 0) {
+        int numOfEquipe = manager.createQuery("select t from Team t").getResultList().size();
+        if (numOfEquipe == 0) 
+        {
             Team java = new Team("java");
+
 
 
             Personne personnne1 = new Personne("Yvan");
@@ -55,15 +57,11 @@ public class UserStoryMain {
             personnne2.setPrenom("Maso");
 
 
-            manager.persist(personnne1);
-            manager.persist(personnne2);
-
-
-            java.getPersonnes().add(personnne1);
-            java.getPersonnes().add(personnne1);
-
+           java.getPersonnes().add(personnne1);
+            java.getPersonnes().add(personnne2);
 
             manager.persist(java);
+
 
         }
 

@@ -2,8 +2,9 @@ package domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+
 
 /**
  * Created by maso on 21/09/15.
@@ -20,8 +21,13 @@ public class Personne
         this.prenom = prenom;
     }
 
+    public Personne() {
+
+    }
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.AUTO)
+
     public long getId() {
         return id;
     }

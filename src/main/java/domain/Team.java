@@ -7,13 +7,27 @@ import java.util.List;
 /**
  * Created by maso on 21/09/15.
  */
+
+@Entity
 public class Team
 {
     private long id;
     private String nom;
+    private List<Personne> personnes;
+    private List<UserStory>stories;
+
+    @ManyToMany
+    public List<UserStory> getStories() {
+        return stories;
+    }
+
+    public void setStories(List<UserStory> stories) {
+        this.stories = stories;
+    }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
+
     public long getId() {
         return id;
     }
@@ -33,11 +47,12 @@ public class Team
     public Team(String nom) {
 
         this.nom = nom;
+        personnes=new ArrayList<Personne>();
     }
 
-    private List<Personne> personnes;
+  
 
-    @OneToMany(mappedBy = "Team",cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST)
     public List<Personne> getPersonnes() {
         return personnes;
     }
