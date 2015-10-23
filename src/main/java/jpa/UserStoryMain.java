@@ -44,29 +44,23 @@ public class UserStoryMain {
     private void createEquipes() {
 
         int numOfEquipe = manager.createQuery("select t from Team t").getResultList().size();
-        if (numOfEquipe == 0) 
-        {
+        if (numOfEquipe == 0) {
+
+
             Team java = new Team("java");
 
+            for (int i = 0; i < 10; i++) {
+                Personne membre = new Personne("Yvan" + i);
+                membre.setPrenom("Christian" + i);
+                java.getPersonnes().add(membre);
+                manager.persist(java);
 
 
-            Personne personnne1 = new Personne("Yvan");
-            personnne1.setPrenom("Christian");
-
-            Personne personnne2 = new Personne("Maso");
-            personnne2.setPrenom("Maso");
-
-
-           java.getPersonnes().add(personnne1);
-            java.getPersonnes().add(personnne2);
-
-            manager.persist(java);
-
+            }
 
         }
 
     }
 
 }
-
 

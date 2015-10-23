@@ -18,6 +18,8 @@ public class UserStory
 
     private List<Team> equipes;
 
+    private List<Tache>taches;
+
     private long id;
 
 
